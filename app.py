@@ -8,7 +8,7 @@ from st_social_media_links import SocialMediaIcons
 
 #import taipy.gui.builder as tbg
 st.set_page_config(page_title="General Elections 2018",
-                   page_icon=":bar_chart:",
+                   page_icon="images/icon.webp",
                 layout="wide")
 @st.cache_data
 def load_data():
@@ -46,7 +46,8 @@ with st.sidebar:
         district = st.selectbox (
             "Select District",
             options =district_options ,
-            index=district_options.index(df['District'].unique()[0])  # Set default to the first district
+            index = 0
+            #index=district_options.index(df['District'].unique()[0])  # Set default to the first district
         )
 
         if district == "ALL":
@@ -66,7 +67,8 @@ with st.sidebar:
         constituency = st.selectbox (
             "Select Constituency",
             options =constituency_options ,
-            index=constituency_options.index(df['Constituency'].unique()[0])  # Set default to the first district
+            index = 0
+            #index=constituency_options.index(df['Constituency'].unique()[0])  # Set default to the first district
         ) 
 
         if constituency == "ALL":
@@ -176,27 +178,22 @@ with tab_party02:
     st.dataframe(df_top10,  width=sum(widths))
 
 with tab_about:
+    st.subheader("Developed By Haider Ali")
+    st.write("A Python Developer")
+    social_media_links = [
+        "https://www.linkedin.com/in/haiderkhalil",
+        "https://www.medium.com/@haiderkhalil",
+        "https://www.x.com/haiderhalil",
+        "https://www.facebook.com/haideralikhalil",
+        "https://www.youtube.com/@towncoder",
+        "https://www.github.com/haideralikhalil",
+        "https://wa.me/00923219032716"
+    ]
+    social_media_icons = SocialMediaIcons(social_media_links)
+
+    social_media_icons.render()  
+    st.divider()
+    st.video("https://youtu.be/ZlLtP16jIM4") 
     st.write("Disclaimer: This is not official app of Election Commission of Pakistan.")
-
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("Developed By Haider Ali")
-        st.write("A Python Developer")
-    st.image("haider.png", width=200, caption="Haider Ali")    
-
-    with col2:
-        social_media_links = [
-            "https://www.linkedin.com/in/haiderkhalil",
-            "https://www.medium.com/@haiderkhalil",
-            "https://www.x.com/haiderhalil",
-            "https://www.facebook.com/haideralikhalil",
-            "https://www.youtube.com/@towncoder",
-            "https://www.github.com/haideralikhalil",
-        ]
-
-        social_media_icons = SocialMediaIcons(social_media_links)
-
-        social_media_icons.render()  
-        st.video("https://www.youtube.com/watch?v=ACBAvnvMkZQ&t=113s") 
-        
+    st.image("haider.png")        
 
